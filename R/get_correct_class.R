@@ -1,4 +1,14 @@
-#obtain useful class indication for every column of a dataframe
+#' Obtain Class Indication For Every Column Of A Dataframe
+#'
+#' @param dataframe A dataframe
+#' @param unq.max.perc cutoff frequency of the most common variable to distinguish CAT from NUM
+#'
+#' @return a dataframe with a column of variables and a column of data types
+#' @export
+#'
+#' @examples
+#' sample_data.class = get_correct_class(sample_data)
+
 get_correct_class <- function(dataframe,
                               unq.max.perc=0.15){
 
@@ -24,7 +34,7 @@ get_correct_class <- function(dataframe,
 
   #create new column "tipo_dati" based on the data column characteristics
   df <- df |>
-    mutate(data_type=case_when(
+    dplyr::mutate(data_type=dplyr::case_when(
       #all NA
       allNA==TRUE~"allNA",
       #character, same value in more than 15% of samples (customizable)
@@ -44,7 +54,7 @@ get_correct_class <- function(dataframe,
 
   #keep only name of column and new class
   df = df |>
-    select(name,data_type)
+    dplyr::select(name,data_type)
 
   return(df)
 }
