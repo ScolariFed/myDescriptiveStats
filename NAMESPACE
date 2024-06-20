@@ -2,3 +2,4 @@
 
 export(descriptive_stats)
 export(get_correct_class)
+export(subset_descriptive_stats)
